@@ -5,7 +5,7 @@ import java.rmi.registry.LocateRegistry;
 public class MatrixServer{
   MatrixServer(){
     try{
-      System.setProperty("java.rmi.server.hostname","192.168.0.5");
+      System.setProperty("java.rmi.server.hostname","192.168.43.218");
       LocateRegistry.createRegistry(1099);
       Matrix c = new MatrixImple();
       Naming.bind("MatrixService", (Remote) c);
@@ -15,5 +15,6 @@ public class MatrixServer{
   }
   public static void main(String[] args){
     new MatrixServer();
+    System.out.println("Servidor Iniciado!!");
   }
 }
