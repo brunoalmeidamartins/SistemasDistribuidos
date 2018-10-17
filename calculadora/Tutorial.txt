@@ -1,0 +1,7 @@
+1º javac *.java
+2º rmic CalculadoraImple1
+3º rmic CalculadoraImple2
+4º rmiregistry
+5º Subir Servidor 1
+6º Subir Servidor 2
+7º Rodar o Cliente
