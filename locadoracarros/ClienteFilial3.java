@@ -22,7 +22,20 @@ public class ClienteFilial3 {
             }catch (Exception e){
                 e.printStackTrace();
             }
-            
+        } else if (operacao.equals("carregaDados")){
+            try{
+                LocadoraInterface obj = (LocadoraInterface) Naming.lookup(urlConexaoBanco(0));
+                obj.carregaDados();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (operacao.equals("escreveArquivo")){
+            try{
+                LocadoraInterface obj = (LocadoraInterface) Naming.lookup(urlConexaoBanco(0));
+                obj.escreveArquivo();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return resposta;
     }
@@ -78,6 +91,10 @@ public class ClienteFilial3 {
                     
                     obj.imprimeListaClientes(); //Imprime lista de clientes da filial
                     
+                } else if(operacao.equals("escreveArquivo")){
+                    obj.escreveArquivo();
+                } else if(operacao.equals("carregaDados")){
+                    obj.carregaDados();
                 }
             }catch (Exception e){
                 e.printStackTrace();
@@ -89,9 +106,6 @@ public class ClienteFilial3 {
                 if(operacao.equals("cadastrarCliente")){
                     resposta = obj.cadastrarCliente(nome_cliente); //Grava no Banco da Filial
                     conexaoBancoPrincipal("addCliente", resposta, nome_cliente, filial);//Grava no Banco Principal
-                    System.out.println(" ");
-                    System.out.println("Cliente Cadastrado!!");
-                    System.out.println(" ");
                 }else if(operacao.equals("verificaDebito")){
                     
                     if(obj.verificaDebito(numero_cliente)){ //Cliente possui debito, retorna resposta como 0
@@ -129,6 +143,10 @@ public class ClienteFilial3 {
                     
                     obj.imprimeListaClientes(); //Imprime lista de clientes da filial
                     
+                }  else if(operacao.equals("escreveArquivo")){
+                    obj.escreveArquivo();
+                } else if(operacao.equals("carregaDados")){
+                    obj.carregaDados();
                 }
             }catch (Exception e){
                 e.printStackTrace();
@@ -141,9 +159,6 @@ public class ClienteFilial3 {
                 if(operacao.equals("cadastrarCliente")){
                     resposta = obj.cadastrarCliente(nome_cliente); //Grava no Banco da Filial
                     conexaoBancoPrincipal("addCliente", resposta, nome_cliente, filial);//Grava no Banco Principal
-                    System.out.println(" ");
-                    System.out.println("Cliente Cadastrado!!");
-                    System.out.println(" ");
                 }else if(operacao.equals("verificaDebito")){
                     
                     if(obj.verificaDebito(numero_cliente)){ //Cliente possui debito, retorna resposta como 0
@@ -179,6 +194,12 @@ public class ClienteFilial3 {
                     
                     obj.imprimeListaClientes(); //Imprime lista de clientes da filial
                     
+                } else if(operacao.equals("escreveArquivo")){
+                    obj.escreveArquivo();
+                }  else if(operacao.equals("escreveArquivo")){
+                    obj.escreveArquivo();
+                } else if(operacao.equals("carregaDados")){
+                    obj.carregaDados();
                 }
             }catch (Exception e){
                 e.printStackTrace();
@@ -213,6 +234,10 @@ public class ClienteFilial3 {
         int FILIAL = 3; //Indica a Filial {1,2,3}
         String opcao = "0";
         Scanner entrada = new Scanner(System.in);
+
+        conexaoBancoFilial("carregaDados", FILIAL, 0, "Vazio");
+        conexaoBancoPrincipal("carregaDados", 0, "VAZIO", 0);
+
         while(true){
             System.out.println("Opcoes: ");
             System.out.println("1 - Cadastrar Cliente");
@@ -270,14 +295,14 @@ public class ClienteFilial3 {
                 System.out.println(" ");
                 
             }else if (opcao.equals("5")){
+                conexaoBancoFilial("escreveArquivo", FILIAL, 0, "Vazio");
+                conexaoBancoPrincipal("escreveArquivo", 0, "VAZIO", 0);
                 break;
             }else{
                 System.out.println(" ");
                 System.out.println("Opcao Incorreta!!");
                 System.out.println(" ");
-            }
-             
-        }
-        
+            }    
+        } 
     }
 }

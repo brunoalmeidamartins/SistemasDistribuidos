@@ -5,6 +5,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import java.io.*;
+
 
 public class BancoPrincipalImple extends UnicastRemoteObject implements LocadoraInterface {
     private static final long serialVersionUID = 1L;
@@ -88,5 +90,64 @@ public class BancoPrincipalImple extends UnicastRemoteObject implements Locadora
     public void imprimeListaClientes() throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void escreveArquivo() throws RemoteException {
+        String filepath = "./banco_principal.txt";
+        int i = 0;
+
+        try {
+            FileWriter f0 = new FileWriter(filepath);
+            String newLine = System.getProperty("line.separator");
+
+            for (i = 0; i < banco.size(); i++){
+                BancoDadosPrincipal c = (BancoDadosPrincipal) banco.get(i);
+                String escreverCliente = (String) c.getNome() + " " + Integer.toString(c.getNumero()) + " " + Integer.toString(c.getFilial());
+                System.out.println(escreverCliente); 
+                
+                f0.write(escreverCliente);
+                f0.write(newLine);
+            }
+            
+            f0.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void carregaClienteBancoPrinciapal(String nome, int numero, int filial) throws RemoteException{
+        BancoDadosPrincipal c = new BancoDadosPrincipal(nome, numero, filial);
+        banco.add(c);
+    }
     
+    @Override
+     public void carregaCliente(String nome, int numero, Boolean debito, int cont) throws RemoteException{
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     }
+
+    @Override
+    public void carregaDados() throws RemoteException{
+        banco = new ArrayList();
+        BufferedReader reader;
+
+        try {
+            reader = new BufferedReader(new FileReader("./banco_principal.txt"));
+            String line = reader.readLine();
+            while (line != null) {
+                String[] tokens = line.split(" ");
+
+                String nome = tokens[0];
+                int numero = Integer.parseInt(tokens[1]);
+                int filial = Integer.parseInt(tokens[2]);
+                
+                carregaClienteBancoPrinciapal(nome, numero, filial);
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

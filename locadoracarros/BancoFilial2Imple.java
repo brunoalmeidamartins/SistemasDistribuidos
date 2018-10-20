@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import java.io.*;
 
 public class BancoFilial2Imple extends UnicastRemoteObject implements LocadoraInterface {
     
@@ -102,5 +103,72 @@ public class BancoFilial2Imple extends UnicastRemoteObject implements LocadoraIn
             System.out.println("Nome: "+cliente.getNome()+" Numero: "+cliente.getNumero()+" Situacao: "+debito);
         }
         System.out.println(" ");
-    } 
+    }
+
+    @Override
+     public void escreveArquivo() throws RemoteException{
+        int i = 0;
+
+        try {
+            FileWriter f0 = new FileWriter("./banco_filial2.txt");
+            String newLine = System.getProperty("line.separator");
+
+            for (i = 0; i < listaClientes.size(); i++){
+                DadosClientes c = (DadosClientes) listaClientes.get(i);
+                String escreverCliente = Integer.toString(c.getCont()) + " " + (String) c.getNome() + " " + Integer.toString(c.getNumero()) + " " + Boolean.toString(c.isDebito());
+                System.out.println(escreverCliente); 
+                
+                // byte b1[]=escreverCliente.getBytes();
+                f0.write(escreverCliente);
+                f0.write(newLine);
+            }
+            
+            f0.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+     }
+
+    @Override
+     public void carregaCliente(String nome, int numero, Boolean debito, int cont) throws RemoteException{
+        DadosClientes c = new DadosClientes(nome, numero, debito, cont);
+        listaClientes.add(c);
+     }
+
+    @Override
+     public void carregaDados() throws RemoteException{
+        listaClientes = new ArrayList();
+        BufferedReader reader;
+
+        try {
+            reader = new BufferedReader(new FileReader("./banco_filial2.txt"));
+            String line = reader.readLine();
+            while (line != null) {
+                String[] tokens = line.split(" ");
+
+                int cont = Integer.parseInt(tokens[0]);
+                String nome = tokens[1];
+                int numero = Integer.parseInt(tokens[2]);
+                Boolean debito;
+
+                if (tokens[3].equals("true")){
+                    debito = true;
+                } else {
+                    debito = false;
+                }
+                
+                carregaCliente(nome, numero, debito, cont);
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+     }
+
+     @Override
+     public void carregaClienteBancoPrinciapal(String nome, int numero, int filial) throws RemoteException{
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     }
 }

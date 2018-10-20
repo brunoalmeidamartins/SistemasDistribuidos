@@ -14,6 +14,13 @@ public class DadosClientes {
         this.debito = false;
     }
 
+    public DadosClientes(String nome, int numero, Boolean debito, int cont) {
+        this.nome = nome;
+        this.numero = numero;
+        this.debito = debito;
+        this.cont = cont;
+    }
+
     public static int getCont() {
         return cont;
     }

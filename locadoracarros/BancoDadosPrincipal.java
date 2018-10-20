@@ -36,6 +36,4 @@ public class BancoDadosPrincipal {
     public void setFilial(int filial) {
         this.filial = filial;
     }
-    
-    
 }

@@ -1,0 +1,6 @@
+6 josephina 1 false
+6 marcelino 2 false
+6 joana 3 false
+6 claudio 4 false
+6 eduardo 5 false
+6 honorio 6 false
