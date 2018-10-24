@@ -88,7 +88,7 @@ public class BancoFilial2Imple extends UnicastRemoteObject implements LocadoraIn
     }
 
     @Override
-    public void imprimeListaClientes() throws RemoteException { //Imprime a lista de Clientes da Filial
+    public ArrayList imprimeListaClientes() throws RemoteException { //Imprime a lista de Clientes da Filial
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         System.out.println(" ");
         for(int i =0;i<listaClientes.size();i++){
@@ -103,6 +103,7 @@ public class BancoFilial2Imple extends UnicastRemoteObject implements LocadoraIn
             System.out.println("Nome: "+cliente.getNome()+" Numero: "+cliente.getNumero()+" Situacao: "+debito);
         }
         System.out.println(" ");
+        return listaClientes;
     }
 
     @Override

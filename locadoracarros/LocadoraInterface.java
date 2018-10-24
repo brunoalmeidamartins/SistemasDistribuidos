@@ -2,6 +2,7 @@
 //package locadoracarros;
 import java.rmi.RemoteException;
 import java.rmi.Remote;
+import java.util.ArrayList;
 
 public interface LocadoraInterface extends Remote{
     /*
@@ -17,7 +18,7 @@ public interface LocadoraInterface extends Remote{
   public boolean locacaoVeiculo(int numero) throws RemoteException;
   public boolean devolucaoVeiculo(int numero) throws RemoteException;
   public int cadastrarCliente(String nome) throws RemoteException;
-  public void imprimeListaClientes() throws RemoteException;
+  public ArrayList imprimeListaClientes() throws RemoteException;
   public void escreveArquivo() throws RemoteException;
   public void carregaCliente(String nome, int numero, Boolean debito, int cont) throws RemoteException;
   public void carregaClienteBancoPrinciapal(String nome, int numero, int filial) throws RemoteException;

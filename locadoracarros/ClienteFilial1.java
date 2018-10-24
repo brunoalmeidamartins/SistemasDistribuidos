@@ -1,4 +1,5 @@
 import java.rmi.Naming;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ClienteFilial1 {
@@ -88,8 +89,23 @@ public class ClienteFilial1 {
                     resposta = 0;
                     
                 }else if(operacao.equals("imprimeListaClientes")){
+                    ArrayList listaClientes;
                     
-                    obj.imprimeListaClientes(); //Imprime lista de clientes da filial
+                    listaClientes = obj.imprimeListaClientes(); //Imprime lista de clientes da filial
+                    
+                    System.out.println(" ");
+                    for(int i =0;i<listaClientes.size();i++){
+                        DadosClientes cliente = (DadosClientes) listaClientes.get(i);
+                        String debito = " ";
+                        //Verifica se o cliente possui debito
+                        if (cliente.isDebito()){
+                            debito = "Possui Debito";
+                        }else{
+                            debito = "Nao possui Debito";
+                        }
+                        System.out.println("Nome: "+cliente.getNome()+" Numero: "+cliente.getNumero()+" Situacao: "+debito);
+                }
+                System.out.println(" ");
                     
                 } else if(operacao.equals("escreveArquivo")){
                     obj.escreveArquivo();
@@ -140,8 +156,23 @@ public class ClienteFilial1 {
                     resposta = 0;
                     
                 }else if(operacao.equals("imprimeListaClientes")){
+                    ArrayList listaClientes;
                     
-                    obj.imprimeListaClientes(); //Imprime lista de clientes da filial
+                    listaClientes = obj.imprimeListaClientes(); //Imprime lista de clientes da filial
+                    
+                    System.out.println(" ");
+                    for(int i =0;i<listaClientes.size();i++){
+                        DadosClientes cliente = (DadosClientes) listaClientes.get(i);
+                        String debito = " ";
+                        //Verifica se o cliente possui debito
+                        if (cliente.isDebito()){
+                            debito = "Possui Debito";
+                        }else{
+                            debito = "Nao possui Debito";
+                        }
+                        System.out.println("Nome: "+cliente.getNome()+" Numero: "+cliente.getNumero()+" Situacao: "+debito);
+                    }
+                    System.out.println(" ");
                     
                 }  else if(operacao.equals("escreveArquivo")){
                     obj.escreveArquivo();
@@ -191,8 +222,23 @@ public class ClienteFilial1 {
                     resposta = 0;
                     
                 }else if(operacao.equals("imprimeListaClientes")){
+                    ArrayList listaClientes;
                     
-                    obj.imprimeListaClientes(); //Imprime lista de clientes da filial
+                    listaClientes = obj.imprimeListaClientes(); //Imprime lista de clientes da filial
+                    
+                    System.out.println(" ");
+                    for(int i =0;i<listaClientes.size();i++){
+                        DadosClientes cliente = (DadosClientes) listaClientes.get(i);
+                        String debito = " ";
+                        //Verifica se o cliente possui debito
+                        if (cliente.isDebito()){
+                            debito = "Possui Debito";
+                        }else{
+                            debito = "Nao possui Debito";
+                        }
+                        System.out.println("Nome: "+cliente.getNome()+" Numero: "+cliente.getNumero()+" Situacao: "+debito);
+                    }
+                    System.out.println(" ");
                     
                 } else if(operacao.equals("escreveArquivo")){
                     obj.escreveArquivo();
