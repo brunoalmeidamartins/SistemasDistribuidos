@@ -261,12 +261,16 @@ public class ClienteFilial1 {
         String url = " ";
         if(identificacao == 0){
             url = "rmi://127.0.0.1/BancoPrincipal";
+	      //url = "rmi://192.168.43.209/BancoPrincipal";
         }else if (identificacao == 1){
             url = "rmi://127.0.0.1/BancoFilial1";
+              //url = "rmi://192.168.43.209/BancoFilial1";
         }else if (identificacao == 2){
             url = "rmi://127.0.0.1/BancoFilial2";
+              //url = "rmi://192.168.43.209/BancoFilial2";
         }else if (identificacao == 3){
             url = "rmi://127.0.0.1/BancoFilial3";
+              //url = "rmi://192.168.43.101/BancoFilial3";
         }else{
             url = "ERRO";
         }
