@@ -1,4 +1,8 @@
-Passos para Inicialização:
+# Sistemas Distribuídos UFJF 2018
+
+Locadora de Carro usando RMI Java
+
+# Passos para Inicialização:
 
 1º Execute o Script "script.sh"
 
